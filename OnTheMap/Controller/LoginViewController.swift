@@ -16,5 +16,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     
     @IBAction func loginPressed(_ sender: Any) {
+        performSegue(withIdentifier: "completeLogin", sender: nil)
     }
 }

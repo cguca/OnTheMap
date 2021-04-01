@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Location: Codable {
+struct StudentLocation: Codable {
     let createdAt: String
     let firstName: String
     let lastName: String

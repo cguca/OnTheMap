@@ -14,7 +14,7 @@
 		4AF065DF261556F90041C394 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AF065DE261556F90041C394 /* Assets.xcassets */; };
 		4AF065E2261556F90041C394 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AF065E0261556F90041C394 /* LaunchScreen.storyboard */; };
 		4AF065F0261558340041C394 /* StudentLocationsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF065EF261558340041C394 /* StudentLocationsResponse.swift */; };
-		4AF065F4261558980041C394 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF065F3261558980041C394 /* Location.swift */; };
+		4AF065F4261558980041C394 /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF065F3261558980041C394 /* StudentLocation.swift */; };
 		4AF065F926155A3B0041C394 /* PostStudentLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF065F826155A3B0041C394 /* PostStudentLocationResponse.swift */; };
 		4AF065FE26155BA80041C394 /* StudentLocationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF065FD26155BA80041C394 /* StudentLocationRequest.swift */; };
 		4AF0660226155D580041C394 /* UpdateStudentLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF0660126155D580041C394 /* UpdateStudentLocationResponse.swift */; };
@@ -25,6 +25,8 @@
 		4AF06611261563390041C394 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF06610261563390041C394 /* Session.swift */; };
 		4AF06614261564B30041C394 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF06613261564B30041C394 /* UserResponse.swift */; };
 		4AF0665B26156ED90041C394 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF0665A26156ED90041C394 /* LoginViewController.swift */; };
+		4AF06680261640920041C394 /* StudentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF0667F261640920041C394 /* StudentTableViewController.swift */; };
+		4AF06683261643F00041C394 /* OnTheMapClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF06682261643F00041C394 /* OnTheMapClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +39,7 @@
 		4AF065E1261556F90041C394 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4AF065E3261556F90041C394 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AF065EF261558340041C394 /* StudentLocationsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationsResponse.swift; sourceTree = "<group>"; };
-		4AF065F3261558980041C394 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		4AF065F3261558980041C394 /* StudentLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
 		4AF065F826155A3B0041C394 /* PostStudentLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostStudentLocationResponse.swift; sourceTree = "<group>"; };
 		4AF065FD26155BA80041C394 /* StudentLocationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationRequest.swift; sourceTree = "<group>"; };
 		4AF0660126155D580041C394 /* UpdateStudentLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStudentLocationResponse.swift; sourceTree = "<group>"; };
@@ -48,6 +50,8 @@
 		4AF06610261563390041C394 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		4AF06613261564B30041C394 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		4AF0665A26156ED90041C394 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		4AF0667F261640920041C394 /* StudentTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentTableViewController.swift; sourceTree = "<group>"; };
+		4AF06682261643F00041C394 /* OnTheMapClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,7 @@
 			children = (
 				4AF065F7261559F70041C394 /* Requests */,
 				4AF065EE2615580E0041C394 /* Responses */,
+				4AF06682261643F00041C394 /* OnTheMapClient.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -115,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				4AF0665A26156ED90041C394 /* LoginViewController.swift */,
+				4AF0667F261640920041C394 /* StudentTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -131,7 +137,7 @@
 			children = (
 				4AF065F826155A3B0041C394 /* PostStudentLocationResponse.swift */,
 				4AF065EF261558340041C394 /* StudentLocationsResponse.swift */,
-				4AF065F3261558980041C394 /* Location.swift */,
+				4AF065F3261558980041C394 /* StudentLocation.swift */,
 				4AF0660126155D580041C394 /* UpdateStudentLocationResponse.swift */,
 				4AF0660A261562000041C394 /* SessionResponse.swift */,
 				4AF0660D261562A40041C394 /* Account.swift */,
@@ -223,6 +229,7 @@
 			files = (
 				4AF0660B261562000041C394 /* SessionResponse.swift in Sources */,
 				4AF0660526155E830041C394 /* LoginRequest.swift in Sources */,
+				4AF06680261640920041C394 /* StudentTableViewController.swift in Sources */,
 				4AF0660226155D580041C394 /* UpdateStudentLocationResponse.swift in Sources */,
 				4AF0665B26156ED90041C394 /* LoginViewController.swift in Sources */,
 				4AF065F926155A3B0041C394 /* PostStudentLocationResponse.swift in Sources */,
@@ -232,8 +239,9 @@
 				4AF06611261563390041C394 /* Session.swift in Sources */,
 				4AF065DA261556F70041C394 /* ViewController.swift in Sources */,
 				4AF06608261560500041C394 /* LoginCredentials.swift in Sources */,
-				4AF065F4261558980041C394 /* Location.swift in Sources */,
+				4AF065F4261558980041C394 /* StudentLocation.swift in Sources */,
 				4AF06614261564B30041C394 /* UserResponse.swift in Sources */,
+				4AF06683261643F00041C394 /* OnTheMapClient.swift in Sources */,
 				4AF065D6261556F70041C394 /* AppDelegate.swift in Sources */,
 				4AF065D8261556F70041C394 /* SceneDelegate.swift in Sources */,
 			);

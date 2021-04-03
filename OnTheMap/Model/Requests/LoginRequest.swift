@@ -8,7 +8,7 @@
 import Foundation
 
 struct LoginRequest: Codable {
-    let udacity: LoginCredentials
+    let udacity: [String:String]
     
     enum CodingKeys: String, CodingKey {
         case udacity

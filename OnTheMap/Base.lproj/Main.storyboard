@@ -217,11 +217,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cJl-U2-SZv">
-                                <rect key="frame" x="20" y="44" width="374" height="818"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cJl-U2-SZv">
+                                <rect key="frame" x="19" y="44" width="374" height="818"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="WaF-Xy-PRI" id="nUE-7c-bPX"/>
+                                </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3G-Tj-CQP">
-                                <rect key="frame" x="18.520300662553382" y="790.99999999999955" width="374" height="36.000000000000114"/>
+                                <rect key="frame" x="20" y="566" width="374" height="36.000000000000114"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.14076012290000001" green="0.70417704299999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
@@ -235,12 +239,6 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Xvi-uc-ojn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="cJl-U2-SZv" firstAttribute="top" secondItem="Xvi-uc-ojn" secondAttribute="top" id="9ky-B5-4pe"/>
-                            <constraint firstItem="cJl-U2-SZv" firstAttribute="bottom" secondItem="Xvi-uc-ojn" secondAttribute="bottom" id="KCf-pj-aj9"/>
-                            <constraint firstItem="Xvi-uc-ojn" firstAttribute="trailing" secondItem="cJl-U2-SZv" secondAttribute="trailing" constant="20" id="svN-jq-u7S"/>
-                            <constraint firstItem="cJl-U2-SZv" firstAttribute="leading" secondItem="Xvi-uc-ojn" secondAttribute="leading" constant="20" id="vbk-ru-az8"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="cJl-U2-SZv" id="fBy-3q-JEJ"/>
@@ -335,7 +333,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="A7m-8m-bIB"/>
+        <segue reference="M6G-Ii-oko"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="icon_addpin" width="24" height="24"/>

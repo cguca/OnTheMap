@@ -16,6 +16,19 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     
     @IBAction func loginPressed(_ sender: Any) {
-        performSegue(withIdentifier: "completeLogin", sender: nil)
+        OnTheMapClient.postSession { (success, error) in
+            if success! {
+                self.performSegue(withIdentifier: "completeLogin", sender: nil)
+            } else {
+                self.showLoginFailure(message: error?.localizedDescription ?? "")
+            }
+        }
+        
+    }
+    
+    func showLoginFailure(message: String) {
+        let alertVC = UIAlertController(title: "Login Failed", message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        show(alertVC, sender: nil)
     }
 }

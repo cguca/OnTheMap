@@ -25,8 +25,10 @@ class AddLocationMapViewController: UIViewController {
         annotation.title = "My Name"
         annotation.subtitle = urlMessage
         annotation.coordinate = location!
-        mapView.region = region
-        mapView.addAnnotation(annotation)
+        DispatchQueue.main.async {
+            self.mapView.region = region
+            self.mapView.addAnnotation(annotation)
+        }
     }
     
     @IBAction func finishPressed(_ sender: Any) {

@@ -35,12 +35,14 @@ class MapViewController: UIViewController {
             annotation.subtitle = mediaURL
             annotations.append(annotation)
         }
-            DispatchQueue.main.async {
-                self.mapView.addAnnotations(annotations)
-            }
+        
+        DispatchQueue.main.async {
+            self.mapView.addAnnotations(annotations)
+        }
     }
     
     @IBAction func logoutPressed(_ sender: Any) {
+        
     }
     @IBAction func refreshPressed(_ sender: Any) {
         OnTheMapClient.getStudentLocations(completion: handleStudentLocations(locations:error:))

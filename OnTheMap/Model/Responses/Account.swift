@@ -9,7 +9,7 @@ import Foundation
 
 struct Account: Codable {
     let registered: Bool
-    let key: Int
+    let key: String
     
     enum CodingKeys: String, CodingKey {
         case registered

@@ -5,7 +5,6 @@
 //  Created by Cary Guca on 4/1/21.
 //
 
-import Foundation
 import UIKit
 
 class StudentTableViewController: UIViewController {
@@ -30,7 +29,10 @@ class StudentTableViewController: UIViewController {
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
-    
+    override func didReceiveMemoryWarning() {
+            super.didReceiveMemoryWarning()
+            // Dispose of any resources that can be recreated.
+        }
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if segue.identifier == "showDetail" {
 //            let detailVC = segue.destination as! MovieDetailViewController

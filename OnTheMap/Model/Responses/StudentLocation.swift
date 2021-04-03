@@ -31,4 +31,8 @@ struct StudentLocation: Codable {
         case uniqueKey
         case updatedAt
     }
+    
+    var name: String {
+        return firstName + " " + lastName
+    }
 }

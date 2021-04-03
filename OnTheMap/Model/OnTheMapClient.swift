@@ -40,7 +40,7 @@ class OnTheMapClient {
         }
     }
     
-    class func taskForGETRequest<ResponseType: Decodable>(url: URL, response: ResponseType.Type, completion: @escaping(ResponseType?, Error?)->Void) -> URLSessionTask {
+    class func taskForGETRequest<ResponseType: Decodable>(url: URL, response: ResponseType.Type, completion: @escaping (ResponseType?, Error?)->Void) -> URLSessionTask {
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
                 DispatchQueue.main.async {
@@ -58,7 +58,6 @@ class OnTheMapClient {
             } catch {
                 DispatchQueue.main.async {
                     completion(nil, error)
-                    
                 }
             }
         }

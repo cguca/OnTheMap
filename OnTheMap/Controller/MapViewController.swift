@@ -14,7 +14,13 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.tabBar.isHidden = false
         OnTheMapClient.getStudentLocations(completion: handleStudentLocations(locations:error:))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     func handleStudentLocations(locations:[StudentLocation], error: Error?) {
@@ -26,7 +32,7 @@ class MapViewController: UIViewController {
             let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
             
             let first = location.firstName
-            let last = location.latitude
+            let last = location.lastName
             let mediaURL = location.mediaURL
             
             let annotation = MKPointAnnotation()
@@ -42,13 +48,29 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func logoutPressed(_ sender: Any) {
-        
+        OnTheMapClient.deleteSession { (sucess, error) in
+            if sucess {
+                print("Logging out is sucessful")
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            } else {
+                print("MapViewController:logoutPressed: Error \(error)")
+            }
+        }
     }
     @IBAction func refreshPressed(_ sender: Any) {
         OnTheMapClient.getStudentLocations(completion: handleStudentLocations(locations:error:))
     }
+    
     @IBAction func dropPinPressed(_ sender: Any) {
-        performSegue(withIdentifier: "dropPinSegue", sender: nil)
+        let controller = self.storyboard!.instantiateViewController(withIdentifier: "InformationPostingViewController") as! InformationPostingViewController
+        let backItem = UIBarButtonItem()
+           backItem.title = "CANCEL"
+        
+           navigationItem.backBarButtonItem = backItem
+        self.navigationController!.pushViewController(controller, animated: true)
+//        performSegue(withIdentifier: "dropPinSegue", sender: nil)
     }
     
 }
@@ -80,8 +102,25 @@ extension MapViewController: MKMapViewDelegate {
         if control == view.rightCalloutAccessoryView {
             let app = UIApplication.shared
             if let toOpen = view.annotation?.subtitle! {
-                app.openURL(URL(string: toOpen)!)
+                let canOpen = app.canOpenURL(URL(string: toOpen)!)
+                if canOpen {
+                    app.openURL(URL(string: toOpen)!)
+                } else {
+                    showInvalidUrlAlert(message: "Invalid URL provide by usser.")
+                }
             }
         }
+    }
+    
+    func showInvalidUrlAlert(message: String) {
+        //let message = "Please enter a location"
+        let alertVC = UIAlertController(title: "Invaild URL", message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertVC, animated: true, completion: nil)
+        return
+        
+//        let alertVC = UIAlertController(title: "Invalid URL", message: message, preferredStyle: .alert)
+//        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//        show(alertVC, sender: nil)
     }
 }

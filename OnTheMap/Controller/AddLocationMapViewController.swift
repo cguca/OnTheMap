@@ -17,6 +17,12 @@ class AddLocationMapViewController: UIViewController {
     let latitudeDelta = 0.05
     let longitudeDelta = 0.05
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let span = MKCoordinateSpan(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
@@ -32,8 +38,21 @@ class AddLocationMapViewController: UIViewController {
     }
     
     @IBAction func finishPressed(_ sender: Any) {
+        var studentLocation = StudentLocationData()
+        studentLocation.firstName = "John"
+        studentLocation.lastName = "Watson"
+        studentLocation.latitude = Float(location!.latitude)
+        studentLocation.longitude = Float(location!.longitude)
+        studentLocation.mapString = "Walla Walla, WA"
+        studentLocation.mediaURL = urlMessage
+        
+        OnTheMapClient.postUserLocation(location: studentLocation) { (success, error) in
+            print("DID it succeed? \(success)")
+
+        }
+        
+        self.navigationController?.popToRootViewController(animated: true)
     }
-    
 }
 
 extension AddLocationMapViewController: MKMapViewDelegate {

@@ -11,14 +11,19 @@ import MapKit
 
 class InformationPostingViewController: UIViewController {
     
+    @IBOutlet weak var globeImage: UIImageView!
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var linkTextField: UITextField!
+    @IBOutlet weak var findLocationButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-       
+        self.tabBarController?.tabBar.isHidden = true
+        activityIndicator.isHidden = true
+        activityIndicator.stopAnimating()
     }
     
     func getCoordinate( addressString : String,
@@ -56,9 +61,19 @@ class InformationPostingViewController: UIViewController {
             return
         }
         
+        DispatchQueue.main.async {
+            self.activityIndicator.isHidden = false
+            self.activityIndicator.startAnimating()
+        }
         
         let location = locationTextField.text!
         getCoordinate(addressString: location) { (coordinate, error) in
+            
+            DispatchQueue.main.async {
+                self.activityIndicator.isHidden = true
+                self.activityIndicator.stopAnimating()
+            }
+            
             if error != nil {
                 let message = "Location cannot be geo coded"
                 let alertVC = UIAlertController(title: "Location Error", message: message, preferredStyle: .alert)
@@ -66,22 +81,15 @@ class InformationPostingViewController: UIViewController {
                 self.present(alertVC, animated: true, completion: nil)
                 return
             }
-           
+            
             let controller: AddLocationMapViewController = self.storyboard?.instantiateViewController(withIdentifier: "AddLocationMapViewController") as! AddLocationMapViewController
 
             controller.location = coordinate
             controller.urlMessage = self.linkTextField.text!
-            self.present(controller, animated: true, completion: nil)
             
+            self.navigationController!.pushViewController(controller, animated: true)
         }
     }
-    
-    func showLoginFailure(message: String) {
-        
-    }
-   
 }
 
-extension InformationPostingViewController: UITextFieldDelegate {
-    
-}
+

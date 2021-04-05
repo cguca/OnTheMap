@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A08B224261A3A9300B139BA /* DeleteSessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A08B223261A3A9300B139BA /* DeleteSessionResponse.swift */; };
+		4A1F0B492619500F00DBEB28 /* StudentLocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1F0B482619500F00DBEB28 /* StudentLocationData.swift */; };
 		4A5A4AA426165B4400F5F557 /* StudentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF0667F261640920041C394 /* StudentTableViewController.swift */; };
 		4A5A4AA92617848900F5F557 /* StudentUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5A4AA82617848900F5F557 /* StudentUITableViewController.swift */; };
 		4A5A4AAC2617989100F5F557 /* InformationPostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5A4AAB2617989100F5F557 /* InformationPostingViewController.swift */; };
@@ -34,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A08B223261A3A9300B139BA /* DeleteSessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteSessionResponse.swift; sourceTree = "<group>"; };
+		4A1F0B482619500F00DBEB28 /* StudentLocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationData.swift; sourceTree = "<group>"; };
 		4A5A4AA82617848900F5F557 /* StudentUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentUITableViewController.swift; sourceTree = "<group>"; };
 		4A5A4AAB2617989100F5F557 /* InformationPostingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationPostingViewController.swift; sourceTree = "<group>"; };
 		4A5A4AAE2617B6C300F5F557 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +77,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A1F0B4726194FF000DBEB28 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				4A1F0B482619500F00DBEB28 /* StudentLocationData.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		4AF065C9261556F70041C394 = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +122,7 @@
 		4AF065EA2615570D0041C394 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4A1F0B4726194FF000DBEB28 /* Data */,
 				4AF065F7261559F70041C394 /* Requests */,
 				4AF065EE2615580E0041C394 /* Responses */,
 				4AF06682261643F00041C394 /* OnTheMapClient.swift */,
@@ -155,6 +168,7 @@
 				4AF0660D261562A40041C394 /* Account.swift */,
 				4AF06610261563390041C394 /* Session.swift */,
 				4AF06613261564B30041C394 /* UserResponse.swift */,
+				4A08B223261A3A9300B139BA /* DeleteSessionResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -243,12 +257,14 @@
 				4AF0660526155E830041C394 /* LoginRequest.swift in Sources */,
 				4AF0660226155D580041C394 /* UpdateStudentLocationResponse.swift in Sources */,
 				4A5A4AAF2617B6C300F5F557 /* MapViewController.swift in Sources */,
+				4A1F0B492619500F00DBEB28 /* StudentLocationData.swift in Sources */,
 				4A5A4AAC2617989100F5F557 /* InformationPostingViewController.swift in Sources */,
 				4AF0665B26156ED90041C394 /* LoginViewController.swift in Sources */,
 				4AF065F926155A3B0041C394 /* PostStudentLocationResponse.swift in Sources */,
 				4AF065F0261558340041C394 /* StudentLocationsResponse.swift in Sources */,
 				4A5A4AA426165B4400F5F557 /* StudentTableViewController.swift in Sources */,
 				4AF0660E261562A40041C394 /* Account.swift in Sources */,
+				4A08B224261A3A9300B139BA /* DeleteSessionResponse.swift in Sources */,
 				4AF065FE26155BA80041C394 /* StudentLocationRequest.swift in Sources */,
 				4A5A4AA92617848900F5F557 /* StudentUITableViewController.swift in Sources */,
 				4AF06611261563390041C394 /* Session.swift in Sources */,

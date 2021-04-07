@@ -11,6 +11,7 @@ class StudentLocationData {
     var uniqueKey: Int = 0
     var firstName: String = ""
     var lastName: String = ""
+    var nickname: String = ""
     var mapString: String = ""
     var mediaURL: String = ""
     var latitude: Float = 0.0

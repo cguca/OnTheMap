@@ -15,12 +15,13 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = false
-        OnTheMapClient.getStudentLocations(completion: handleStudentLocations(locations:error:))
+//        OnTheMapClient.getStudentLocations(completion: handleStudentLocations(locations:error:))
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        OnTheMapClient.getStudentLocations(completion: handleStudentLocations(locations:error:))
     }
     
     func handleStudentLocations(locations:[StudentLocation], error: Error?) {
@@ -55,7 +56,7 @@ class MapViewController: UIViewController {
                     self.dismiss(animated: true, completion: nil)
                 }
             } else {
-                print("MapViewController:logoutPressed: Error \(error)")
+                print("MapViewController:logoutPressed: Error \(String(describing: error))")
             }
         }
     }
@@ -104,7 +105,7 @@ extension MapViewController: MKMapViewDelegate {
             if let toOpen = view.annotation?.subtitle! {
                 let canOpen = app.canOpenURL(URL(string: toOpen)!)
                 if canOpen {
-                    app.openURL(URL(string: toOpen)!)
+                    app.open(URL(string: toOpen)!)
                 } else {
                     showInvalidUrlAlert(message: "Invalid URL provide by usser.")
                 }

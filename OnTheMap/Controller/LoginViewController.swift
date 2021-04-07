@@ -30,14 +30,39 @@ class LoginViewController: UIViewController {
             return
         }
                 
-        OnTheMapClient.login(username: emailTextField.text!, password: passwordTextField.text!) { (success, error) in
-            if success! {
-                self.performSegue(withIdentifier: "completeLogin", sender: nil)
-            } else {
-                self.showLoginFailure(message: error?.localizedDescription ?? "")
-            }
-        }
+        OnTheMapClient.login(username: emailTextField.text!, password: passwordTextField.text!, completion: handleLoginResponse(success:error:)
+        )
         
+//        { (success, error) in
+//            if success {
+//                //self.prepare(for: <#T##UIStoryboardSegue#>, sender: <#T##Any?#>)
+//                self.performSegue(withIdentifier: "completeLogin", sender: nil)
+//            } else {
+//                self.showLoginFailure(message: error?.localizedDescription ?? "")
+//            }
+//        }
+        
+//        @IBAction func loginTapped(_ sender: UIButton) {
+//            setLoggingIn(true)
+//            TMDBClient.getRequestToken(completion: requestTokenHandler(success:error:))
+//        }
+        
+    }
+    
+    func handleLoginResponse(success: Bool, error: Error?) {
+        if success {
+            OnTheMapClient.getUserData(completion: handleUserDataResponse(name:error:))
+        } else {
+            showLoginFailure(message: error?.localizedDescription ?? "")
+        }
+    }
+    
+    func handleUserDataResponse(name: String?, error: Error?) {
+        if let _ = name {
+            self.performSegue(withIdentifier: "completeLogin", sender: nil)
+        } else {
+            showLoginFailure(message: error?.localizedDescription ?? "")
+        }
     }
     
     @IBAction func signUpPressed(_ sender: Any) {

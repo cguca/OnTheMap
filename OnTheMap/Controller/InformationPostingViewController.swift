@@ -33,7 +33,6 @@ class InformationPostingViewController: UIViewController {
             if error == nil {
                 if let placemark = placemarks?[0] {
                     let location = placemark.location!
-                        
                     completionHandler(location.coordinate, nil)
                     return
                 }
@@ -85,6 +84,7 @@ class InformationPostingViewController: UIViewController {
             let controller: AddLocationMapViewController = self.storyboard?.instantiateViewController(withIdentifier: "AddLocationMapViewController") as! AddLocationMapViewController
 
             controller.location = coordinate
+            controller.locationText = (self.locationTextField?.text!)!
             controller.urlMessage = self.linkTextField.text!
             
             self.navigationController!.pushViewController(controller, animated: true)

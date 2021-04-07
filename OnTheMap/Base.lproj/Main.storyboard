@@ -170,28 +170,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_world" translatesAutoresizingMaskIntoConstraints="NO" id="TKB-j8-ezI">
-                                <rect key="frame" x="87" y="162" width="240" height="128"/>
+                                <rect key="frame" x="87" y="101" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Drn-Vj-ErS">
-                                <rect key="frame" x="87" y="356" width="240" height="34"/>
+                                <rect key="frame" x="87" y="261" width="240" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Link" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uCr-5z-sKS">
-                                <rect key="frame" x="87" y="405" width="240" height="34"/>
+                                <rect key="frame" x="87" y="327" width="240" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Kb5-iq-ZtF">
-                                <rect key="frame" x="186" y="535" width="62" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w7v-ll-zhN">
-                                <rect key="frame" x="87" y="457" width="240" height="46"/>
+                                <rect key="frame" x="87" y="390" width="240" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.14076012290000001" green="0.70417704299999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="FIND LOCATION">
@@ -201,6 +196,11 @@
                                     <action selector="findLocationPressed:" destination="XRt-CJ-7Vt" eventType="touchUpInside" id="VhS-eq-baG"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Kb5-iq-ZtF">
+                                <rect key="frame" x="156" y="455" width="102" height="89"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="uHM-JD-ge1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -226,17 +226,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cJl-U2-SZv">
-                                <rect key="frame" x="19" y="44" width="374" height="818"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cJl-U2-SZv">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <connections>
                                     <outlet property="delegate" destination="WaF-Xy-PRI" id="nUE-7c-bPX"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3G-Tj-CQP">
-                                <rect key="frame" x="20" y="671" width="374" height="36.000000000000114"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3G-Tj-CQP">
+                                <rect key="frame" x="20" y="781" width="374" height="36"/>
                                 <color key="backgroundColor" red="0.14076012290000001" green="0.70417704299999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="374" id="bXl-j5-Uk4"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                 <state key="normal" title="FINISH">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -248,6 +249,14 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Xvi-uc-ojn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Xvi-uc-ojn" firstAttribute="bottom" secondItem="W3G-Tj-CQP" secondAttribute="bottom" constant="45" id="6h2-f0-J2H"/>
+                            <constraint firstItem="W3G-Tj-CQP" firstAttribute="centerX" secondItem="X7r-OV-ckv" secondAttribute="centerX" id="Ebd-f5-KYt"/>
+                            <constraint firstItem="Xvi-uc-ojn" firstAttribute="trailing" secondItem="cJl-U2-SZv" secondAttribute="trailing" id="L4A-0n-mNQ"/>
+                            <constraint firstItem="cJl-U2-SZv" firstAttribute="top" secondItem="Xvi-uc-ojn" secondAttribute="top" id="hGd-nk-a9O"/>
+                            <constraint firstItem="cJl-U2-SZv" firstAttribute="leading" secondItem="Xvi-uc-ojn" secondAttribute="leading" id="iXH-QY-aLP"/>
+                            <constraint firstItem="cJl-U2-SZv" firstAttribute="bottom" secondItem="Xvi-uc-ojn" secondAttribute="bottom" id="wqj-dO-oSF"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="cJl-U2-SZv" id="fBy-3q-JEJ"/>

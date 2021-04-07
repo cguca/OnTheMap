@@ -10,9 +10,11 @@ import Foundation
 class OnTheMapClient {
     
     struct Auth {
-        static var accountId = ""
-        static var requestToken = ""
+        static var accountKey = ""
         static var sessionId = ""
+        static var firstname = ""
+        static var lastname = ""
+        static var nickname = ""
     }
     
     enum Endpoints {
@@ -22,7 +24,7 @@ class OnTheMapClient {
         case getStudentLocations
         case postSession
         case postUserLocation
-        case posterImageURL(String)
+        case getUserData(String)
         
         var stringValue: String {
             switch self {
@@ -32,8 +34,8 @@ class OnTheMapClient {
                 return "https://onthemap-api.udacity.com/v1/session"
             case .postUserLocation:
                 return "https://onthemap-api.udacity.com/v1/StudentLocation"
-            case .posterImageURL(let posterPath):
-                return "https://image.tmdb.org/t/p/w500/\(posterPath)"
+            case .getUserData(let userId):
+                return "https://onthemap-api.udacity.com/v1/users/\(userId)"
             }
         }
         
@@ -42,13 +44,45 @@ class OnTheMapClient {
         }
     }
     
+    class func getUserData(completion: @escaping (String?, Error?) -> Void) {
+        let request = URLRequest(url: Endpoints.getUserData(Auth.accountKey).url)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if error != nil {
+                completion(nil, error)
+            }
+//            let range = 5..<data!.count
+//            let newData = data?.subdata(in: range) /* subset response data! */
+//            print(String(data: newData!, encoding: .utf8)!)
+            let fixedData = self.fixJSONResposeData(data: data)
+//            print(String(data: fixedData, encoding: .utf8)!)
+            let decoder = JSONDecoder()
+            do {
+                let responseObject = try decoder.decode(UserResponse.self, from: fixedData)
+                DispatchQueue.main.async {
+                    Auth.firstname = responseObject.firstName
+                    Auth.lastname = responseObject.lastName
+                    Auth.nickname = responseObject.nickname
+                    print("*** This is the user's name for the session \(Auth.nickname)")
+                    completion(responseObject.nickname, nil)
+                }
+            } catch {
+                print("In getUserData while decoding UserReposnse response \(error)")
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                }
+            }
+        }
+        task.resume()
+    }
+    
     class func postUserLocation(location: StudentLocationData, completion: @escaping (Bool, Error?) -> Void) {
-//        var request = URLRequest(url: Endpoints.postUserLocation.url)
-        var request = URLRequest(url: URL(string: "www")!)
+        var request = URLRequest(url: Endpoints.postUserLocation.url)
+//        var request = URLRequest(url: URL(string: "www")!)
         //completion(true, nil)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        let body = StudentLocationRequest(uniqueKey: Auth.accountId, firstName: location.firstName, lastName: location.lastName, mapString: location.mapString, mediaURL: location.mediaURL, latitude: location.latitude, longitude: location.longitude)
+        let body = StudentLocationRequest(uniqueKey: Auth.accountKey, firstName: location.firstName, lastName: location.lastName, mapString: location.mapString, mediaURL: location.mediaURL, latitude: location.latitude, longitude: location.longitude)
         
         request.httpBody = try! JSONEncoder().encode(body)
         
@@ -63,7 +97,7 @@ class OnTheMapClient {
         task.resume()
     }
     
-    class func login(username: String, password: String, completion: @escaping (Bool?, Error?) -> Void) {
+    class func login(username: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
         let loginRequest = LoginRequest(udacity: ["username":"cary.guca@gmail.com","password":"puRsuc-4tawxo-vipvir"])
 //        let loginRequest = LoginRequest(udacity: ["username":username,"password":password])
         var request = URLRequest(url: Endpoints.postSession.url)
@@ -85,7 +119,8 @@ class OnTheMapClient {
             let decoder = JSONDecoder()
             do {
                 let responseObject = try decoder.decode(SessionResponse.self, from: newData!)
-                Auth.accountId = responseObject.account.key
+                Auth.accountKey = responseObject.account.key
+                Auth.sessionId = responseObject.session.id
                 print(responseObject)
                 DispatchQueue.main.async {
                     completion(true, nil)
@@ -102,7 +137,12 @@ class OnTheMapClient {
     class func deleteSession(completion: @escaping (Bool, Error?) -> Void) {
         taskForDELETERequest(url: Endpoints.postSession.url, responseType: DeleteSessionResponse.self) { (response, error)
         in
-            if let response = response {
+            if let _ = response {
+                Auth.accountKey = ""
+                Auth.sessionId = ""
+                Auth.nickname = ""
+                Auth.firstname = ""
+                Auth.lastname = ""
                 completion(true, nil)
             } else {
                 completion(false, error)
@@ -154,10 +194,10 @@ class OnTheMapClient {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         let body = body
-        print("Here is the body before encoding \(try! JSONEncoder().encode(body))")
+//        print("Here is the body before encoding \(try! JSONEncoder().encode(body))")
         request.httpBody = try! JSONEncoder().encode(body)
-        
-        print("Here is the request json \(request.httpBody)")
+//
+//        print("Here is the request json \(request.httpBody)")
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             if error != nil { // Handle error…
@@ -235,6 +275,10 @@ class OnTheMapClient {
             }
         }
         task.resume()
+    }
+    
+    class func getCurrentUserName() -> (String, String, String) {
+        return (fistname: Auth.firstname, lastname: Auth.lastname, nickname: Auth.nickname)
     }
     
     /*

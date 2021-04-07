@@ -15,19 +15,23 @@ class StudentUITableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        OnTheMapClient.getStudentLocations() {students, error
-            in
-            self.studentLocations = students
-            self.tableView.reloadData()
-        }
+//        OnTheMapClient.getStudentLocations() {students, error
+//            in
+//            self.studentLocations = students
+//            self.tableView.reloadData()
+//        }
         self.tabBarController?.tabBar.isHidden = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
-
-        tableView.reloadData()
+        OnTheMapClient.getStudentLocations() {students, error
+            in
+            self.studentLocations = students
+            self.tableView.reloadData()
+        }
+//        tableView.reloadData()
     }
     
     @IBAction func logoutPressed(_ sender: Any) {
@@ -38,7 +42,7 @@ class StudentUITableViewController: UIViewController {
                     self.dismiss(animated: true, completion: nil)
                 }
             } else {
-                print("MapViewController:logoutPressed: Error \(error)")
+                print("MapViewController:logoutPressed: Error \(String(describing: error))")
             }
         }
     }

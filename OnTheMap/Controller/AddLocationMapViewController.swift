@@ -13,6 +13,7 @@ class AddLocationMapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     var location: CLLocationCoordinate2D? = nil
+    var locationText: String = ""
     var urlMessage: String = ""
     let latitudeDelta = 0.05
     let longitudeDelta = 0.05
@@ -27,10 +28,11 @@ class AddLocationMapViewController: UIViewController {
         super.viewWillAppear(animated)
         let span = MKCoordinateSpan(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
         let region = MKCoordinateRegion(center: location!, span: span)
+        
         let annotation = MKPointAnnotation()
-        annotation.title = "My Name"
-        annotation.subtitle = urlMessage
         annotation.coordinate = location!
+        annotation.title = locationText
+        
         DispatchQueue.main.async {
             self.mapView.region = region
             self.mapView.addAnnotation(annotation)
@@ -38,12 +40,15 @@ class AddLocationMapViewController: UIViewController {
     }
     
     @IBAction func finishPressed(_ sender: Any) {
-        var studentLocation = StudentLocationData()
-        studentLocation.firstName = "John"
-        studentLocation.lastName = "Watson"
+        
+        let result = OnTheMapClient.getCurrentUserName()
+        let studentLocation = StudentLocationData()
+        studentLocation.nickname = result.2
+        studentLocation.firstName = result.0
+        studentLocation.lastName = result.1
         studentLocation.latitude = Float(location!.latitude)
         studentLocation.longitude = Float(location!.longitude)
-        studentLocation.mapString = "Walla Walla, WA"
+        studentLocation.mapString = locationText
         studentLocation.mediaURL = urlMessage
         
         OnTheMapClient.postUserLocation(location: studentLocation) { (success, error) in
@@ -82,7 +87,7 @@ extension AddLocationMapViewController: MKMapViewDelegate {
         if control == view.rightCalloutAccessoryView {
             let app = UIApplication.shared
             if let toOpen = view.annotation?.subtitle! {
-                app.openURL(URL(string: toOpen)!)
+                app.open(URL(string: toOpen)!)
             }
         }
     }

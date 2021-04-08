@@ -15,11 +15,6 @@ class StudentUITableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        OnTheMapClient.getStudentLocations() {students, error
-//            in
-//            self.studentLocations = students
-//            self.tableView.reloadData()
-//        }
         self.tabBarController?.tabBar.isHidden = false
     }
     
@@ -31,7 +26,7 @@ class StudentUITableViewController: UIViewController {
             self.studentLocations = students
             self.tableView.reloadData()
         }
-//        tableView.reloadData()
+        tableView.reloadData()
     }
     
     @IBAction func logoutPressed(_ sender: Any) {
@@ -60,17 +55,11 @@ class StudentUITableViewController: UIViewController {
     @IBAction func addPostPressed(_ sender: Any) {
         let controller = self.storyboard!.instantiateViewController(withIdentifier: "InformationPostingViewController") as! InformationPostingViewController
         let backItem = UIBarButtonItem()
-//        let backItem = UIBarButtonItem(title: "CANCEL", style: .plain, target: nil, action: nil)
         backItem.title = "CANCEL"
         backItem.style = .done
    
         navigationItem.backBarButtonItem = backItem
         self.navigationController!.pushViewController(controller, animated: true)
-        
-//        let backBarButtonItem = UIBarButtonItem(title: "You back button title here", style: .plain, target: nil, action: nil)
-//                navigationItem.backBarButtonItem = backBarButtonItem
-        
-       // performSegue(withIdentifier: "postInformationSeque", sender: nil)
     }
     
 }

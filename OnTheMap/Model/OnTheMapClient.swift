@@ -44,83 +44,33 @@ class OnTheMapClient {
     }
     
     class func getUserData(completion: @escaping (String?, Error?) -> Void) {
-//        let request = URLRequest(url: Endpoints.getUserData(Auth.accountKey).url)
-//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//            if error != nil {
-//                completion(nil, error)
-//            }
-
-//            let fixedData = self.fixJSONResposeData(data: data)
-            
-            taskForGETRequest(url: Endpoints.getUserData(Auth.accountKey).url, response: UserResponse.self, chompResponse: true) { (response, error) in
-                if error != nil {
-                    completion(nil, error)
-                }
-                
-                Auth.firstname = (response?.firstName)!
-                Auth.lastname = (response?.lastName)!
-                Auth.nickname = (response?.nickname)!
-                print("*** This is the user's name for the session \(Auth.nickname)")
-                completion(response?.nickname, nil)
-                
-                
+        taskForGETRequest(url: Endpoints.getUserData(Auth.accountKey).url, response: UserResponse.self, chompResponse: true) { (response, error) in
+            if error != nil {
+                completion(nil, error)
             }
-    
-//            let decoder = JSONDecoder()
-//            do {
-//                let responseObject = try decoder.decode(UserResponse.self, from: fixedData)
-//                DispatchQueue.main.async {
-//                    Auth.firstname = responseObject.firstName
-//                    Auth.lastname = responseObject.lastName
-//                    Auth.nickname = responseObject.nickname
-//                    print("*** This is the user's name for the session \(Auth.nickname)")
-//                    completion(responseObject.nickname, nil)
-//                }
-//            } catch {
-//                print("In getUserData while decoding UserReposnse response \(error)")
-//                DispatchQueue.main.async {
-//                    completion(nil, error)
-//                }
-//            }
-//        }
-//        task.resume()
+            
+            Auth.firstname = (response?.firstName)!
+            Auth.lastname = (response?.lastName)!
+            Auth.nickname = (response?.nickname)!
+            print("*** This is the user's name for the session \(Auth.nickname)")
+            completion(response?.nickname, nil)
+        }
     }
     
     class func postUserLocation(location: StudentLocationData, completion: @escaping (Bool, Error?) -> Void) {
-//        var request = URLRequest(url: Endpoints.postUserLocation.url)
-//        var request = URLRequest(url: URL(string: "www")!)
-        //completion(true, nil)
-//        request.httpMethod = "POST"
-//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
         let body = StudentLocationRequest(uniqueKey: Auth.accountKey, firstName: location.firstName, lastName: location.lastName, mapString: location.mapString, mediaURL: location.mediaURL, latitude: location.latitude, longitude: location.longitude)
         
         taskForPOSTRequest(url: Endpoints.postUserLocation.url, responseType: UserResponse.self, body: body) { (response, error) in
-            if error != nil { // Handle error…
+            if error != nil {
                 completion(true, error)
             }
-            //print(String(data: data!, encoding: .utf8)!)
             completion(true, nil)
         }
-       
-        
-//        request.httpBody = try! JSONEncoder().encode(body)
-//
-//        let session = URLSession.shared
-//        let task = session.dataTask(with: request) { data, response, error in
-//            if error != nil { // Handle error…
-//                completion(true, error)
-//            }
-//            //print(String(data: data!, encoding: .utf8)!)
-//            completion(true, nil)
-//        }
-//        task.resume()
     }
     
     
     class func login(username: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
-         let loginRequest = LoginRequest(udacity: ["username":"cary.guca@gmail.com","password":"puRsuc-4tawxo-vipvir"])
-//        let loginRequest = LoginRequest(udacity: ["username":username,"password":password])
+        let loginRequest = LoginRequest(udacity: ["username":username,"password":password])
         taskForPOSTRequest(url: Endpoints.postSession.url, responseType: SessionResponse.self, body: loginRequest) { (response, error)
         in
             if let response = response {
@@ -132,44 +82,7 @@ class OnTheMapClient {
             }
         }
     }
-    
-//    class func login(username: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
-//        let loginRequest = LoginRequest(udacity: ["username":"cary.guca@gmail.com","password":"puRsuc-4tawxo-vipvir"])
-////        let loginRequest = LoginRequest(udacity: ["username":username,"password":password])
-//        var request = URLRequest(url: Endpoints.postSession.url)
-//        request.httpMethod = "POST"
-//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//        request.addValue("application/json", forHTTPHeaderField: "Accept")
-//        let body = loginRequest
-//        request.httpBody = try! JSONEncoder().encode(body)
-//
-//        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-//            if error != nil {
-//                completion(false, error)
-//                return
-//             }
-//            let range = 5..<data!.count
-//            let newData = data?.subdata(in: range)
-//             print(String(data: newData!, encoding: .utf8)!)
-//
-//            let decoder = JSONDecoder()
-//            do {
-//                let responseObject = try decoder.decode(SessionResponse.self, from: newData!)
-//                Auth.accountKey = responseObject.account.key
-//                Auth.sessionId = responseObject.session.id
-//                print(responseObject)
-//                DispatchQueue.main.async {
-//                    completion(true, nil)
-//                }
-//            } catch {
-//                DispatchQueue.main.async {
-//                    completion(false, error)
-//                }
-//            }
-//        }
-//        task.resume()
-//    }
-    
+        
     class func deleteSession(completion: @escaping (Bool, Error?) -> Void) {
         taskForDELETERequest(url: Endpoints.postSession.url, responseType: DeleteSessionResponse.self) { (response, error)
         in
@@ -250,8 +163,6 @@ class OnTheMapClient {
                 return
             }
             
-//            let range = 5..<data.count
-//            let newData = data.subdata(in: range) /* subset response data! */
             let fixedData = self.fixJSONResposeData(data: data)
             print(String(data: fixedData, encoding: .utf8)!)
         

@@ -32,21 +32,6 @@ class LoginViewController: UIViewController {
                 
         OnTheMapClient.login(username: emailTextField.text!, password: passwordTextField.text!, completion: handleLoginResponse(success:error:)
         )
-        
-//        { (success, error) in
-//            if success {
-//                //self.prepare(for: <#T##UIStoryboardSegue#>, sender: <#T##Any?#>)
-//                self.performSegue(withIdentifier: "completeLogin", sender: nil)
-//            } else {
-//                self.showLoginFailure(message: error?.localizedDescription ?? "")
-//            }
-//        }
-        
-//        @IBAction func loginTapped(_ sender: UIButton) {
-//            setLoggingIn(true)
-//            TMDBClient.getRequestToken(completion: requestTokenHandler(success:error:))
-//        }
-        
     }
     
     func handleLoginResponse(success: Bool, error: Error?) {

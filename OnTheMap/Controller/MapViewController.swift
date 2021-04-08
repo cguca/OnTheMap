@@ -103,11 +103,13 @@ extension MapViewController: MKMapViewDelegate {
         if control == view.rightCalloutAccessoryView {
             let app = UIApplication.shared
             if let toOpen = view.annotation?.subtitle! {
-                let canOpen = app.canOpenURL(URL(string: toOpen)!)
-                if canOpen {
-                    app.open(URL(string: toOpen)!)
-                } else {
-                    showInvalidUrlAlert(message: "Invalid URL provide by usser.")
+                if let url = URL(string: toOpen) {
+                    let canOpen = app.canOpenURL(url)
+                    if canOpen {
+                        app.open(URL(string: toOpen)!)
+                    } else {
+                        showInvalidUrlAlert(message: "Invalid URL provide by usser.")
+                    }
                 }
             }
         }
@@ -119,9 +121,5 @@ extension MapViewController: MKMapViewDelegate {
         alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertVC, animated: true, completion: nil)
         return
-        
-//        let alertVC = UIAlertController(title: "Invalid URL", message: message, preferredStyle: .alert)
-//        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//        show(alertVC, sender: nil)
     }
 }

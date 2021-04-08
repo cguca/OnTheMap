@@ -15,8 +15,13 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     
-    
     let signUpURL = "https://auth.udacity.com/sign-up"
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+     }
     
     @IBAction func loginPressed(_ sender: Any) {
         
@@ -58,5 +63,12 @@ class LoginViewController: UIViewController {
         let alertVC = UIAlertController(title: "Login Failed", message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         show(alertVC, sender: nil)
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
     }
 }
